@@ -174,10 +174,10 @@ img{max-width:100%;display:block}
 .carousel-section-one{margin-bottom:20px} /* espaçamento vertical entre os dois carrosséis */
 .carousel-section-two{margin-top:16px}
 .hcarousel{position:relative;width:100%;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.carousel-track{display:flex;width:max-content;gap:16px}
+.carousel-track{display:flex;width:max-content;gap:16px;will-change:transform;backface-visibility:hidden;transform:translateZ(0)}
 .carousel-group{display:flex;gap:16px;flex:0 0 auto}
 .carousel-item{flex:0 0 auto}
-.carousel-img{display:block;height:380px;width:auto;border-radius:16px;box-shadow:0 10px 28px rgba(65,40,24,.10);background:var(--surface)}
+.carousel-img{display:block;height:380px;width:auto;border-radius:16px;box-shadow:0 10px 28px rgba(65,40,24,.10);background:var(--surface);content-visibility:auto;transform:translateZ(0)}
 /* Carrossel 1: rola para a esquerda; Carrossel 2: rola para a direita (sentidos opostos) */
 .carousel-one .carousel-track{animation:carousel-scroll-left 70s linear infinite}
 .carousel-two .carousel-track{animation:carousel-scroll-right 70s linear infinite}
@@ -187,9 +187,9 @@ img{max-width:100%;display:block}
 @keyframes carousel-scroll-right{from{transform:translateX(calc(-50% - 8px))}to{transform:translateX(0)}}
 @media(max-width:1024px){.carousel-section-one{margin-bottom:18px}}
 @media(max-width:768px){.carousel-img{height:300px}.carousel-section-one{margin-bottom:16px}}
-@media(max-width:600px){.carousel-img{height:240px}.carousel-section-one{margin-bottom:14px}}
-@media(max-width:430px){.carousel-img{height:210px}}
-@media(max-width:375px){.carousel-img{height:190px}}
+@media(max-width:600px){.carousel-img{height:220px}.carousel-section-one{margin-bottom:14px}}
+@media(max-width:430px){.carousel-img{height:190px}}
+@media(max-width:375px){.carousel-img{height:170px}}
 @media(prefers-reduced-motion:reduce){.carousel-one .carousel-track,.carousel-two .carousel-track{animation:none}}
 .gallery-caption{text-align:center;color:var(--text-soft);margin-top:26px;font-style:italic}
 
