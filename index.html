@@ -762,14 +762,11 @@ img{-webkit-user-drag:none;-khtml-user-drag:none;-moz-user-drag:none;-o-user-dra
       <li><i class="fa-solid fa-gift"></i><span><strong>Bono:</strong> Lista de papeles recomendados</span></li>
       <li><i class="fa-solid fa-gift"></i><span><strong>Bono:</strong> Calendarios de pared A4</span></li>
       <li><i class="fa-solid fa-gift"></i><span><strong>Bono:</strong> Actualizaciones incluidas</span></li>
-      <li><i class="fa-solid fa-gift"></i><span><strong>Bono:</strong> Soporte prioritario</span></li>
       <li><i class="fa-solid fa-gift"></i><span><strong>Bono:</strong> 500 Artes de Botones Editables</span></li>
       <li><i class="fa-solid fa-gift"></i><span><strong>Bono:</strong> 500 Moldes de Cajas Escenario</span></li>
       <li><i class="fa-solid fa-gift"></i><span><strong>Bono:</strong> 500 Moldes de Fiestas</span></li>
     </ul>
-    <p class="up-save">+ Ahorra US$ 26,00 hoy</p>
     <a class="btn" id="exit-cta" href="https://pay.hotmart.com/J106734432Y?off=odktb468&amp;checkoutMode=10"><i class="fa-solid fa-star"></i>Quiero el Premium por US$ 3,90</a>
-    <button class="decline" id="exit-decline">No, gracias. Prefiero salir</button>
   </div>
 </div>
 
@@ -1131,7 +1128,6 @@ document.getElementById('upsell-decline').addEventListener('click',function(){
   window.addEventListener('pageshow',function(ev){if(ev.persisted)saindo=false;});
 
   document.getElementById('exit-close').addEventListener('click',fechar);
-  document.getElementById('exit-decline').addEventListener('click',function(){fechar();history.back();});
   popup.addEventListener('click',function(e){if(e.target===popup)fechar();});
 
   if(forcar)abrir();
