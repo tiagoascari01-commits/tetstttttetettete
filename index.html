@@ -855,24 +855,46 @@ function irPara(url){
   var ctas=document.querySelectorAll('a.btn[href="#planos"]');
   var basicoCard=document.getElementById('plan-basico');
   if(!basicoCard)return;
+
+  // calcula a posição de destino sempre no momento do uso (layout já estável)
+  function calcularDestino(){
+    var rect=basicoCard.getBoundingClientRect();
+    var topoBasico=window.pageYOffset+rect.top;
+    var alturaTela=window.innerHeight;
+    var alturaBasico=basicoCard.offsetHeight;
+    var destino;
+    if(alturaBasico + 90 <= alturaTela){
+      destino = topoBasico - 16;
+    }else{
+      destino = topoBasico + alturaBasico - alturaTela + 140;
+    }
+    return Math.max(0,destino);
+  }
+
+  function rolarAteDestino(){
+    // 1º salto imediato (sem animação) para perto, forçando o layout a estabilizar
+    var destino1=calcularDestino();
+    window.scrollTo(0,destino1);
+    // 2º: recalcula depois que o layout assentou e faz o ajuste fino suave
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        var destinoFinal=calcularDestino();
+        window.scrollTo({top:destinoFinal,behavior:'smooth'});
+        // 3º reforço: corrige de novo caso imagens tenham terminado de carregar
+        setTimeout(function(){
+          var dCorrigido=calcularDestino();
+          if(Math.abs(dCorrigido-window.pageYOffset)>30){
+            window.scrollTo({top:dCorrigido,behavior:'smooth'});
+          }
+        },450);
+      });
+    });
+  }
+
   ctas.forEach(function(a){
     a.addEventListener('click',function(e){
       e.preventDefault();
-      var rect=basicoCard.getBoundingClientRect();
-      var topoBasico=window.pageYOffset+rect.top;
-      var alturaTela=window.innerHeight;
-      var alturaBasico=basicoCard.offsetHeight;
-      // posiciona o card Básico de forma que ele fique visível por completo e sobre
-      // um pequeno espaço embaixo para o topo do Premium (badge + título) aparecer
-      var destino;
-      if(alturaBasico + 90 <= alturaTela){
-        // o Básico cabe na tela: alinha o topo dele perto do topo, sobra espaço p/ Premium
-        destino = topoBasico - 16;
-      }else{
-        // o Básico é mais alto que a tela: rola até mostrar o final dele + início do Premium
-        destino = topoBasico + alturaBasico - alturaTela + 140;
-      }
-      window.scrollTo({top:Math.max(0,destino),behavior:'smooth'});
+      rolarAteDestino();
     });
   });
 })();
