@@ -1182,10 +1182,10 @@ document.getElementById('upsell-decline').addEventListener('click',function(){
         var cancel=false, stop=function(){cancel=true;};
         window.addEventListener('touchstart',stop,{once:true,passive:true});
         window.addEventListener('wheel',stop,{once:true,passive:true});
-        window.scrollTo({top:calc(),behavior:'smooth'});
+        window.scrollTo({top:calc(),behavior:'instant'});
         // corrige a posição se imagens acima carregarem durante a rolagem
-        [500,1000,1600,2400].forEach(function(t){setTimeout(function(){
-          if(cancel)return; var a=calc(); if(Math.abs(a-window.pageYOffset)>6)window.scrollTo({top:a,behavior:'smooth'});
+        [60,300,800,1500].forEach(function(t){setTimeout(function(){
+          if(cancel)return; var a=calc(); if(Math.abs(a-window.pageYOffset)>6)window.scrollTo({top:a,behavior:'instant'});
         },t);});
         return;
       }
